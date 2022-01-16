@@ -3,6 +3,42 @@
 @inject IProductService ProductService
 <h1>Products</h1>
 
+@if (_products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in _products)
+            {
+            <tr>
+              <td><a href="product/@product.Id">@product.Name</a></td>
+              <td>@product.Price.ToString("C")</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
 @code {
+	private IEnumerable<ProductDto.Index> _products;
+
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		_products = await ProductService.GetIndexAsync();
+	}
 
 }
