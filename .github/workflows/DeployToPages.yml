@@ -15,9 +15,6 @@ jobs:
 
     - name: Publish application
       run: dotnet publish -c Release ./Project/Project.sln
-      
-    - name: Start server
-      run: dotnet run --project ./Project/Server/
     
     # base href url value should be changed so that resources like CSS and scripts can load properly. 
     - name: Rewrite base href
@@ -39,3 +36,6 @@ jobs:
         build_dir: ${{ env.PUBLISH_DIR }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Start server
+      run: dotnet run --project ./Project/Server/
