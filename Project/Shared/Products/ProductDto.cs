@@ -15,7 +15,7 @@ namespace Project.Shared.Products
 			public decimal Price { get; set; }
 		}
 
-		public class Detail
+		public class Detail : Index
 		{
 			public string Description { get; set; }
 			public string Image { get; set; }	
