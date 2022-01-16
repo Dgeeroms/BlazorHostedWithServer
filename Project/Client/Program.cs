@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Project.Shared.Products;
 
 namespace Project.Client
 {
@@ -18,6 +19,9 @@ namespace Project.Client
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            
+            //DI
+            builder.Services.AddScoped<IProductService, FakeProductService>();
 
             await builder.Build().RunAsync();
         }
